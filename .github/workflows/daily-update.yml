@@ -1,0 +1,24 @@
+name: Daily Update by 22f2000954@ds.study.iitm.ac.in
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # Runs daily at 12:00 UTC (specific time, not wildcards)
+  workflow_dispatch:  # Lets you test manually
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update by 22f2000954@ds.study.iitm.ac.in
+        run: |
+          echo "$(date): Daily auto-update" >> update.log
+          git config user.name "DevSync Bot"
+          git config user.email "22f2000954@ds.study.iitm.ac.in"
+          git add update.log
+          git commit -m "Daily update: $(date)" || echo "No changes"
+          git push
