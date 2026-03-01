@@ -5,6 +5,9 @@ on:
     - cron: '0 12 * * *'  # Runs daily at 12:00 UTC (specific time, not wildcards)
   workflow_dispatch:  # Lets you test manually
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
